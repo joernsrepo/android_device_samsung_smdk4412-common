@@ -21,4 +21,7 @@
 
     <!-- Home button wake support -->
     <bool name="config_show_homeWake">true</bool>
+    
+    <!-- USB charge only mode check box -->
+    <bool name="config_show_usb_charge_only_checkbox" translatable="false">true</bool>
 </resources>
