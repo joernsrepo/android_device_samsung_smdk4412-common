@@ -38,6 +38,10 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/audio_effects.conf:system/etc/audio_effects.conf \
     $(COMMON_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
+# Wallpaper hack
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/configs/77wallpaper:system/etc/init.d/77wallpaper
+
 # Camera FW
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/80cfw:system/etc/init.d/80cfw

@@ -1,0 +1,13 @@
+#!/system/bin/sh
+#
+# Set /sdcard/Wallpaper.jpg as wallpaper
+# This is done to avoid compression & degradation
+#
+
+if [ -f /data/media/0/Wallpaper.jpg ]; then
+    busybox cp /data/media/0/Wallpaper.jpg /data/system/users/0/wallpaper
+
+    busybox chown system /data/system/users/0/wallpaper
+    busybox chgrp system /data/system/users/0/wallpaper
+    busybox chmod 0700 /data/system/users/0/wallpaper
+fi
