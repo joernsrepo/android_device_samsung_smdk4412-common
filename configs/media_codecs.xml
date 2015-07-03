@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright (C) 2012 The Android Open Source Project
+<!-- Copyright 2013 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -16,10 +16,12 @@
 
 <!--
 <!DOCTYPE MediaCodecs [
-<!ELEMENT MediaCodecs (Decoders,Encoders)>
-<!ELEMENT Decoders (MediaCodec*)>
-<!ELEMENT Encoders (MediaCodec*)>
-<!ELEMENT MediaCodec (Type*,Quirk*)>
+<!ELEMENT Include EMPTY>
+<!ATTLIST Include href CDATA #REQUIRED>
+<!ELEMENT MediaCodecs (Decoders|Encoders|Include)*>
+<!ELEMENT Decoders (MediaCodec|Include)*>
+<!ELEMENT Encoders (MediaCodec|Include)*>
+<!ELEMENT MediaCodec (Type|Quirk|Include)*>
 <!ATTLIST MediaCodec name CDATA #REQUIRED>
 <!ATTLIST MediaCodec type CDATA>
 <!ELEMENT Type EMPTY>
@@ -73,24 +75,21 @@ Only the three quirks included above are recognized at this point:
     matching surfaceflinger support that can render the custom format to
     a texture and possibly other code, so just DON'T USE THIS QUIRK.
 
+
 -->
 
 <MediaCodecs>
-
     <Include href="media_codecs_google_audio.xml" />
     <Include href="media_codecs_google_telephony.xml" />
-
     <Decoders>
         <MediaCodec name="OMX.SEC.AVC.Decoder" type="video/avc" />
         <MediaCodec name="OMX.SEC.M4V.Decoder" type="video/mp4v-es" />
         <MediaCodec name="OMX.SEC.WMV.Decoder" type="video/x-ms-wmv" />
     </Decoders>
-
     <Encoders>
         <MediaCodec name="OMX.SEC.AVC.Encoder" type="video/avc" />
         <MediaCodec name="OMX.SEC.M4V.Encoder" type="video/mp4v-es" />
     </Encoders>
-
     <Include href="media_codecs_google_video.xml" />
     <Include href="media_codecs_ffmpeg.xml" />
 </MediaCodecs>
