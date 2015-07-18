@@ -61,7 +61,7 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/gps.conf:system/etc/gps.conf
 
 # Packages
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
     AdvancedDisplay \
     audio.a2dp.default \
     audio.primary.smdk4x12 \
@@ -79,6 +79,11 @@ PRODUCT_PACKAGES := \
     lights.exynos4 \
     macloader \
     tinymix
+
+ifneq ($(TARGET_HAS_CAM_FLASH) ,false)
+PRODUCT_PACKAGES += \
+    Torch
+endif
 
 # MFC API
 PRODUCT_PACKAGES += \
@@ -98,13 +103,13 @@ PRODUCT_PACKAGES += \
 #   libOMX.SEC.VP8.Decoder
 
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
 # we overlay this file (see netflix hack above)
 #   frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml
+    $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
