@@ -2364,17 +2364,18 @@ int exynos_camera_preview(struct exynos_camera *exynos_camera)
 	}
 
 	if (exynos_camera->preview_window != NULL && exynos_camera->gralloc != NULL) {
-		if (exynos_camera->preview_window->dequeue_buffer(exynos_camera->preview_window, &window_buffer, &window_stride) == 0) {
-			if (exynos_camera->gralloc->lock(exynos_camera->gralloc, *window_buffer, GRALLOC_USAGE_YUV_ADDR | GRALLOC_USAGE_SW_WRITE_OFTEN, 0, 0, width, height, &window_data) == 0) {
-				memcpy(window_data, memory_pointer, memory_size);
-				exynos_camera->gralloc->unlock(exynos_camera->gralloc, *window_buffer);
-			} else
-				ALOGE("%s: Unable to lock gralloc", __func__);
+		exynos_camera->preview_window->dequeue_buffer(exynos_camera->preview_window, &window_buffer, &window_stride);
+		exynos_camera->gralloc->lock(exynos_camera->gralloc, *window_buffer, GRALLOC_USAGE_SW_WRITE_OFTEN, 0, 0, width, height, &window_data);
 
-			if (exynos_camera->preview_window->enqueue_buffer(exynos_camera->preview_window, window_buffer) != 0)
-				ALOGE("%s: Unable to enqueue buffer to preview window", __func__);
-		} else
-			ALOGE("%s: Unable to dequeue buffer from preview window", __func__);
+		if (window_data == NULL) {
+			ALOGE("%s: Unable to lock gralloc", __func__);
+			goto error;
+		}
+
+		memcpy(window_data, memory_pointer, memory_size);
+
+		exynos_camera->gralloc->unlock(exynos_camera->gralloc, *window_buffer);
+		exynos_camera->preview_window->enqueue_buffer(exynos_camera->preview_window, window_buffer);
 	}
 
 	if (exynos_camera->camera_fimc_is) {
@@ -3131,10 +3132,6 @@ int exynos_camera_continuous_auto_focus(struct exynos_camera *exynos_camera, int
 	if (exynos_camera == NULL)
 		return -EINVAL;
 
-	/* Report MSG_FOCUS_MOVE only in continuous focus modes */
-	if (exynos_camera->focus_mode != FOCUS_MODE_CONTINOUS_VIDEO && exynos_camera->focus_mode != FOCUS_MODE_CONTINOUS_PICTURE)
-		return 0;
-
 	switch (auto_focus_status) {
 		case CAMERA_AF_STATUS_IN_PROGRESS:
 			if (EXYNOS_CAMERA_MSG_ENABLED(CAMERA_MSG_FOCUS_MOVE) && EXYNOS_CAMERA_CALLBACK_DEFINED(notify) && !exynos_camera->callback_lock)
@@ -3259,7 +3256,7 @@ int exynos_camera_set_preview_window(struct camera_device *dev,
 		goto error;
 	}
 
-	rc = w->set_usage(w, GRALLOC_USAGE_CAMERA | GRALLOC_USAGE_HW_ION | GRALLOC_USAGE_EXTERNAL_DISP | GRALLOC_USAGE_SW_WRITE_OFTEN);
+	rc = w->set_usage(w, GRALLOC_USAGE_SW_WRITE_OFTEN);
 	if (rc) {
 		ALOGE("%s: Unable to set usage", __func__);
 		goto error;
@@ -3667,8 +3664,8 @@ int exynos_camera_send_command(struct camera_device *dev,
 {
 	struct exynos_camera *exynos_camera;
 	exynos_camera = (struct exynos_camera *) dev->priv;
-	if (cmd != 8)
-		ALOGD("%s(%p, %d, %d, %d)", __func__, dev, cmd, arg1, arg2);
+
+	ALOGD("%s(%p, %d, %d, %d)", __func__, dev, cmd, arg1, arg2);
 	switch (cmd) {
 		case CAMERA_CMD_START_FACE_DETECTION:
 			if (setFaceDetect(exynos_camera, FACE_DETECTION_ON) < 0) {
