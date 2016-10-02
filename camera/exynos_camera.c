@@ -2369,7 +2369,7 @@ int exynos_camera_preview(struct exynos_camera *exynos_camera)
 			ALOGE("%s: Error in dequeueing buffer", __func__);
 			goto error;
 		}
-		ret = exynos_camera->gralloc->lock(exynos_camera->gralloc, *window_buffer, GRALLOC_USAGE_YUV_ADDR | GRALLOC_USAGE_SW_WRITE_OFTEN, 0, 0, width, height, &window_data);
+		ret = exynos_camera->gralloc->lock(exynos_camera->gralloc, *window_buffer, GRALLOC_USAGE_SW_WRITE_OFTEN, 0, 0, width, height, &window_data);
 
 		if (window_data == NULL || ret == -EINVAL) {
 			ALOGE("%s: Unable to lock gralloc", __func__);
