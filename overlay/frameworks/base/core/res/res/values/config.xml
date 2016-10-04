@@ -183,4 +183,6 @@
 
     <!-- Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">4</integer>
+    <!-- The device supports freeform window management -->
+    <bool name="config_freeformWindowManagement">true</bool>
 </resources>
