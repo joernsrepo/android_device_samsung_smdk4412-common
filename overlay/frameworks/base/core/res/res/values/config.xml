@@ -185,4 +185,7 @@
     <integer name="config_multiuserMaximumUsers">4</integer>
     <!-- The device supports freeform window management -->
     <bool name="config_freeformWindowManagement">true</bool>
+    
+    <!-- Configuration to support SIM contact batch operation.-->
+    <bool name="config_sim_phonebook_batch_operation">false</bool>
 </resources>
