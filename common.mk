@@ -51,10 +51,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/gps.conf:system/etc/gps.conf
 
-# CMFileManager
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/CMFileManager.apk:system/app/CMFileManager/CMFileManager.apk
-
 # Packages
 PRODUCT_PACKAGES := \
     audio.a2dp.default \
