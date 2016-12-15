@@ -53,7 +53,7 @@ PRODUCT_COPY_FILES += \
 
 # CMFileManager
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/ESFileManager.apk:system/app/ESFileManager/ESFileManager.apk
+    $(LOCAL_PATH)/prebuilt/CMFileManager.apk:system/app/CMFileManager/CMFileManager.apk
 
 # Packages
 PRODUCT_PACKAGES := \
