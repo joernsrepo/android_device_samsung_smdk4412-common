@@ -62,6 +62,8 @@ PRODUCT_PACKAGES := \
     gralloc.exynos4 \
     libfimc \
     libfimg \
+    libhwconverter \
+    libhwjpeg \
     libnetcmdiface \
     libsecion \
     libstlport \
