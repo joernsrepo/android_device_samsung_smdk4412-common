@@ -60,7 +60,6 @@ PRODUCT_PACKAGES := \
     com.android.future.usb.accessory \
     Gello \
     gralloc.exynos4 \
-    hwcomposer.exynos4 \
     libfimc \
     libfimg \
     libnetcmdiface \
@@ -71,6 +70,10 @@ PRODUCT_PACKAGES := \
     lights.exynos4 \
     macloader \
     tinymix
+
+ifneq ($(BOARD_USES_DRM_HWCOMPOSER),true)
+PRODUCT_PACKAGES += hwcomposer.exynos4
+endif
 
 # MFC API
 PRODUCT_PACKAGES += \
