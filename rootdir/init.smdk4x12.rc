@@ -287,6 +287,14 @@ write /sys/devices/virtual/sec/sec_touchkey/touchkey_led_on_keypress 1
 
 # Enable BLN
     write /sys/devices/virtual/misc/backlightnotification/enabled 1
+    
+# Permissions for fade-in/out effect
+    chown system media_rw /sys/devices/virtual/sec/sec_touchkey/touchkey_fadein
+    chown system media_rw /sys/devices/virtual/sec/sec_touchkey/touchkey_fadeout
+    
+# Add optional fade-in/out effect 
+	write /sys/devices/virtual/sec/sec_touchkey/touchkey_fadein 1
+    write /sys/devices/virtual/sec/sec_touchkey/touchkey_fadeout 1
 
 # Permissions for gpio_keys
     chown radio system /sys/class/sec/sec_key/wakeup_keys
