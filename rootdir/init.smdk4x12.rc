@@ -254,24 +254,24 @@ on post-fs-data
 write /sys/devices/virtual/sec/sec_touchkey/touchkey_led_on_keypress 1
 	
 # Permissions for BLN
-    chown system media_rw /sys/devices/virtual/misc/backlightnotification/version
-    chown system media_rw /sys/devices/virtual/misc/backlightnotification/enabled
-    chown system media_rw /sys/devices/virtual/misc/backlightnotification/notification_led
-    chown system media_rw /sys/devices/virtual/misc/backlightnotification/blink_control
+    chown radio system /sys/devices/virtual/misc/backlightnotification/version
+    chown radio system /sys/devices/virtual/misc/backlightnotification/enabled
+    chown radio system /sys/devices/virtual/misc/backlightnotification/notification_led
+    chown radio system /sys/devices/virtual/misc/backlightnotification/blink_control
 
 # Permissions for BLN-LED
-    chown system media_rw /sys/devices/virtual/misc/notification/bl_timeout
-    chown system media_rw /sys/devices/virtual/misc/notification/blnww
-    chown system media_rw /sys/devices/virtual/misc/notification/breathing
-    chown system media_rw /sys/devices/virtual/misc/notification/breathing_steps
-    chown system media_rw /sys/devices/virtual/misc/notification/dyn_brightness
-    chown system media_rw /sys/devices/virtual/misc/notification/led
-    chown system media_rw /sys/devices/virtual/misc/notification/led_fadein
-    chown system media_rw /sys/devices/virtual/misc/notification/led_fadeout
-    chown system media_rw /sys/devices/virtual/misc/notification/led_on_touch
-    chown system media_rw /sys/devices/virtual/misc/notification/led_timeout_ms
-    chown system media_rw /sys/devices/virtual/misc/notification/notification_enabled
-    chown system media_rw /sys/devices/virtual/misc/notification/notification_timeout
+    chown radio system /sys/devices/virtual/misc/notification/bl_timeout
+    chown radio system /sys/devices/virtual/misc/notification/blnww
+    chown radio system /sys/devices/virtual/misc/notification/breathing
+    chown radio system /sys/devices/virtual/misc/notification/breathing_steps
+    chown radio system /sys/devices/virtual/misc/notification/dyn_brightness
+    chown radio system /sys/devices/virtual/misc/notification/led
+    chown radio system /sys/devices/virtual/misc/notification/led_fadein
+    chown radio system /sys/devices/virtual/misc/notification/led_fadeout
+    chown radio system /sys/devices/virtual/misc/notification/led_on_touch
+    chown radio system /sys/devices/virtual/misc/notification/led_timeout_ms
+    chown radio system /sys/devices/virtual/misc/notification/notification_enabled
+    chown radio system /sys/devices/virtual/misc/notification/notification_timeout
 
 # BLN-LED Default configuration
     write /sys/devices/virtual/misc/notification/led_timeout_ms 0
@@ -289,8 +289,8 @@ write /sys/devices/virtual/sec/sec_touchkey/touchkey_led_on_keypress 1
     write /sys/devices/virtual/misc/backlightnotification/enabled 1
     
 # Permissions for fade-in/out effect
-    chown system media_rw /sys/devices/virtual/sec/sec_touchkey/touchkey_fadein
-    chown system media_rw /sys/devices/virtual/sec/sec_touchkey/touchkey_fadeout
+   chown radio system /sys/devices/virtual/sec/sec_touchkey/touchkey_fadein
+   chown radio system /sys/devices/virtual/sec/sec_touchkey/touchkey_fadeout
     
 # Add optional fade-in/out effect 
 	write /sys/devices/virtual/sec/sec_touchkey/touchkey_fadein 1
