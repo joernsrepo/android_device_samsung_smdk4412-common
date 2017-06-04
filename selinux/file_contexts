@@ -22,4 +22,4 @@
 /sys/devices/virtual/misc/backlightnotification(/.*)?            u:object_r:sysfs_bln:s0
 
 #BLN - LED
-/sys/devices/virtual/misc/notification(/.*)? 
+/sys/devices/virtual/misc/notification(/.*)?                     u:object_r:sysfs_blnled:s0
