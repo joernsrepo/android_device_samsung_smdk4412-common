@@ -285,16 +285,21 @@ write /sys/devices/virtual/sec/sec_touchkey/touchkey_led_on_keypress 1
     write /sys/devices/virtual/misc/notification/notification_enabled 1
     write /sys/devices/virtual/misc/notification/dyn_brightness 1
 
-# Enable BLN
+# Touchkey BLN
     write /sys/devices/virtual/misc/backlightnotification/enabled 1
+    write /sys/devices/virtual/misc/backlightnotification/notification_timeout 90000
+    write /sys/devices/virtual/misc/backlightnotification/breathing 1
+    write /sys/devices/virtual/misc/backlightnotification/breathing_steps reset
+    write /sys/devices/virtual/misc/backlightnotification/breathing_steps "2500 3300 50 100"
+    write /sys/devices/virtual/misc/backlightnotification/breathing_steps "3300 2500 50 100"
     
 # Permissions for fade-in/out effect
    chown radio system /sys/devices/virtual/sec/sec_touchkey/touchkey_fadein
    chown radio system /sys/devices/virtual/sec/sec_touchkey/touchkey_fadeout
     
-# Add optional fade-in/out effect 
-	write /sys/devices/virtual/sec/sec_touchkey/touchkey_fadein 1
-    write /sys/devices/virtual/sec/sec_touchkey/touchkey_fadeout 1
+# Touchkey Fade-in/out
+    write /sys/class/sec/sec_touchkey/touchkey_fadein 1
+    write /sys/class/sec/sec_touchkey/touchkey_fadeout 1
 
 # Permissions for gpio_keys
     chown radio system /sys/class/sec/sec_key/wakeup_keys
