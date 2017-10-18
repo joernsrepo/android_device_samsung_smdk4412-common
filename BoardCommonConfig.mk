@@ -32,6 +32,7 @@ ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 TARGET_NEEDS_EXYNOS4_ENHANCEMENTS := true
+TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos4
@@ -165,6 +166,9 @@ BOARD_HAL_STATIC_LIBRARIES := libhealthd.exynos4
 
 # LPM Battery Percentage
 BOARD_CHARGER_SHOW_PERCENTAGE := true
+
+# Charger
+WITH_LINEAGE_CHARGER := false
 
 # inherit from the proprietary version
 -include vendor/samsung/smdk4412-common/BoardConfigVendor.mk
